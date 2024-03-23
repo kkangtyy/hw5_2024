@@ -1,0 +1,139 @@
+/* Animate logo to grow into full-size and full opacity */
+#logo{
+    animation-name: createBox;
+    animation-duration: 5s;
+}
+@keyframes createBox{
+    from {
+        width: 25px;
+        opacity: 0;
+    }
+    to {
+        width: 475px;
+        opacity: 1;
+    }
+}
+/* Body element to use the Poppins font (using Google fonts) with serif as a backup.  It should also use the image “concrete_seamless.png” as a background-image with a backup color of #f1f1f1. */
+body{
+    font-family: "Poppins", sans-serif ;
+    /* Need the .. so that it knows which leave the css folder and go into the images folder*/
+    background-image: url("../images/concrete_seamless.png");
+    background-color: #f1f1f1;
+}
+/* Edit the css for the header tag (all instances) to use flex to match our example. */
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Edit the css for the nav_links class to use flex to match our example. Do not modify the list items or the links - modify the nav_links class to use flex. */
+.nav_links{
+    display: flex;
+    flex-direction: column;
+}
+/* Style nav links so they're the same color even when visited */
+.nav_links li a:visited{
+    color: #0000EE;
+    text-decoration: none;
+}
+/* Child selector > to choose the right header under a card class */
+.card > header{
+    background-color: #288088;
+    border: 2px solid #45ADAD;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 50px 50px 0px 0px;
+}
+/* Borders weren't curving right; issue was in the actual class's border radius; set initial size to 450px so that flex-direction doesn't affect element size */
+.card{
+    border-radius: 50px 50px 0px 0px;
+    flex-basis: 450px;
+    flex-direction: column;
+}
+/* Center pricing class horizontally and vertically */
+.pricing{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+/* Style gallery images' borders, margin, and width*/
+.gallery img{
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+/* Style gallery class with flex to arrange photos */
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 900px){
+    /* Style header tags and nav_links class; logo is far left, links are far right */
+    header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .nav_links{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+    /* Style pricing and card classes (cards should be 275px) */
+    .card{
+        display: flex;
+        flex-basis: 275px;
+    }
+    .pricing{
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+    /* Styles the first header that isn't inside of main */
+    body > header:first-of-type{
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+}
+/* Reduced motion specifications */
+@media screen and (prefers-reduced-motion: reduce) {
+    #logo{
+        animation: none;
+    }
+}
+@media print{
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: none;
+    }
+    /* Style the nav links so they're equally spaced along the header in a row */
+    .nav_links{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    /* Make elements align along the bottom (use pricing class) */
+    .pricing{
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    /* Style card class with the appropriate border and style an initial size of 325px */
+    .card{
+        display: flex;
+        border: 2px solid #45ADDD;
+        flex-basis: 325px;
+    }
+    /* Remove the gallery header and the gallery class's contents (images) */
+    #gallery{
+        display: none;
+    }
+    .gallery{
+        display: none;
+    }
+    .card ul li:nth-child(2)::after{
+        content: "\01F44D";
+    }
+}
