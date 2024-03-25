@@ -13,20 +13,20 @@
         opacity: 1;
     }
 }
-/* Body element to use the Poppins font (using Google fonts) with serif as a backup.  It should also use the image “concrete_seamless.png” as a background-image with a backup color of #f1f1f1. */
+/* Change font to Poppins (serif as backup); set a background image and a backup color (#f1f1f1)*/
 body{
     font-family: "Poppins", sans-serif ;
     /* Need the .. so that it knows which leave the css folder and go into the images folder*/
     background-image: url("../images/concrete_seamless.png");
     background-color: #f1f1f1;
 }
-/* Edit the css for the header tag (all instances) to use flex to match our example. */
+/* Header tag should be centered and in columns */
 header{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-/* Edit the css for the nav_links class to use flex to match our example. Do not modify the list items or the links - modify the nav_links class to use flex. */
+/* nav_links class should be in a column and be styled under the logo */
 .nav_links{
     display: flex;
     flex-direction: column;
@@ -50,7 +50,7 @@ header{
     flex-basis: 450px;
     flex-direction: column;
 }
-/* Center pricing class horizontally and vertically */
+/* Center pricing class horizontally and vertically using flex properties; cards should be arranged in a column and sizing should be square-like (see reference) */
 .pricing{
     display: flex;
     justify-content: center;
@@ -62,7 +62,7 @@ header{
     margin: 10px;
     width: 300px;
 }
-/* Style gallery class with flex to arrange photos */
+/* Style gallery class with flex to arrange photos ("cool" photos on left, logo photos on right) */
 .gallery{
     display: flex;
     flex-wrap: wrap;
@@ -81,7 +81,7 @@ header{
         flex-direction: row;
         align-items: flex-end;
     }
-    /* Style pricing and card classes (cards should be 275px) */
+    /* Style pricing and card classes (cards should be 275px) to alternate and last "cool" to be on the bottom-center */
     .card{
         display: flex;
         flex-basis: 275px;
@@ -91,14 +91,14 @@ header{
         flex-wrap: nowrap;
         align-items: center;
     }
-    /* Styles the first header that isn't inside of main */
+    /* Styles the first header that isn't inside of main so that it doesn't move when scrolling */
     body > header:first-of-type{
         position: sticky;
         top: 0;
         z-index: 999;
     }
 }
-/* Reduced motion specifications */
+/* Reduced motion specifications for the logo animation*/
 @media screen and (prefers-reduced-motion: reduce) {
     #logo{
         animation: none;
@@ -109,16 +109,33 @@ header{
         font-family: Arial, Helvetica, sans-serif;
         background-image: none;
     }
-    /* Style the nav links so they're equally spaced along the header in a row */
+    /* Style the nav element so that there's enough space for the nav links to be spaced */
+    nav{
+        width: 100%;
+    }
+    /* Style the nav_links class so that it's arranged in a row and justify-content is used to space the links; use width so that it spans across the nav flexbox */
     .nav_links{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        width: 80%;
     }
-    /* Make elements align along the bottom (use pricing class) */
+    /* Style each li so that the navigation row is centered in the nav flexbox */
+    .nav_links:nth-child(1){
+        margin: auto;
+    }
+    .nav_links:nth-child(2){
+        margin: auto;
+    }
+    .nav_links:nth-child(3){
+        margin: auto;
+    }
+    /* Make card elements align along the bottom (use pricing class) */
     .pricing{
         display: flex;
         flex-wrap: nowrap;
+        flex-direction: row;
+        margin-bottom: 100px;
     }
     /* Style card class with the appropriate border and style an initial size of 325px */
     .card{
@@ -133,6 +150,7 @@ header{
     .gallery{
         display: none;
     }
+    /* Add in the emoji after the second li element of the ul for each card class; use grouping selector and nth-child to select the second li element; use ::after so it adds in the emoji code after the paragraph; change the "U+" to "\0" */
     .card ul li:nth-child(2)::after{
         content: "\01F44D";
     }
